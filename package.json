@@ -4,7 +4,7 @@
   "main": "lib/index.js",
   "types": "lib",
   "license": "MIT",
-  "repository": "http://google.com",
+  "repository": "https://github.com/hiep294/react-memo-list",
   "scripts": {
     "build": "rm -rf ./lib && tsc",
     "prepare": "yarn build"
