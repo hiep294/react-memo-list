@@ -1,18 +1,7 @@
 import * as React from 'react';
 import { useMemo } from 'react';
 
-interface IRenderItemProps<ItemT> {
-  item: ItemT;
-  index: number;
-}
-
-interface MemoListProps<ItemT> {
-  data: ReadonlyArray<ItemT>;
-  renderItem: ({ item, index }: IRenderItemProps<ItemT>) => JSX.Element | null;
-  keyExtractor?: (item: ItemT, index: number) => string | number;
-}
-
-const defaultKeyExtractor = (item: any, index: any) => index;
+const defaultKeyExtractor = (item: any, index: number) => `${index}`;
 
 function MemoList<ItemT>({
   data,
@@ -23,17 +12,41 @@ function MemoList<ItemT>({
   return (
     <>
       {data.map((item, index) => (
-        <MemoItem item={item} key={keyExtractor(item, index)}>
+        <WrapperMemoItem item={item} key={keyExtractor(item, index).toString()}>
           <RenderItem item={item} index={index} />
-        </MemoItem>
+        </WrapperMemoItem>
       ))}
     </>
   );
 }
 
-const MemoItem = ({ children, item }: any) => {
+const WrapperMemoItem = ({ children, item }: IWrapperMemoItem) => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   return useMemo(() => <>{children}</>, [item]);
 };
+
+interface MemoListProps<ItemT> {
+  data: ReadonlyArray<ItemT>;
+  renderItem: TRenderItem<ItemT>;
+  keyExtractor?: TKeyExtractor;
+}
+
+type TKeyExtractor = (item: any, index: number) => string | number;
+
+type TRenderItem<ItemT> = ({
+  item,
+  index,
+}: IRenderItemProps<ItemT>) => JSX.Element | null;
+
+interface IRenderItemProps<ItemT> {
+  item: ItemT;
+  index: number;
+}
+
+// IMemoItem
+interface IWrapperMemoItem {
+  children: any;
+  item: any;
+}
 
 export default MemoList;
