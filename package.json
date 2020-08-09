@@ -1,6 +1,6 @@
 {
   "name": "react-memo-list",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "main": "lib/index.js",
   "types": "lib",
   "license": "MIT",
