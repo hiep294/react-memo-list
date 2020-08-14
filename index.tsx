@@ -28,10 +28,10 @@ const WrapperMemoItem = ({ children, item }: IWrapperMemoItem) => {
 interface MemoListProps<ItemT> {
   data: ReadonlyArray<ItemT>;
   renderItem: TRenderItem<ItemT>;
-  keyExtractor?: TKeyExtractor;
+  keyExtractor?: TKeyExtractor<ItemT>;
 }
 
-type TKeyExtractor = (item: any, index: number) => string | number;
+type TKeyExtractor<ItemT> = (item: ItemT, index: number) => string | number;
 
 type TRenderItem<ItemT> = ({
   item,

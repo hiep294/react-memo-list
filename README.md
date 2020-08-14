@@ -9,10 +9,11 @@ import MemoList from 'react-memo-list'
 For example:
 
 ```
+let idAuto = 0
 const [todos, setTodos] = React.useState([
     {
       title: ' nulla magnam. ',
-      id:b idAuto++,
+      id: idAuto++,
     },
     {
       title: 'officia doloremque',
