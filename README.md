@@ -1,3 +1,8 @@
+## Noted
+If implementing setState in MemoList renderItem, should use setState Updater Function, for example: setState(count => count+1). (should not use setState(count + 1) because the count just updated in setState Updated Function)
+
+## Intro
+
 Lib for rendering list with better-performance in react
 
 ## Installation
